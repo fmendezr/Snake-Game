@@ -1,5 +1,4 @@
 from scoreboard import Scoreboard
-from game_over_message import GameOverMessage
 from snake import Snake
 from food import Food
 from turtle import Screen
@@ -34,6 +33,8 @@ class SnakeGame():
 
         #main loop
         self.main_looop()
+
+        self.screen.exitonclick()
  
     # snake eats food 
     def detect_food(self):
@@ -44,10 +45,8 @@ class SnakeGame():
     # handle game over conditions
     def handle_game_over(self):
         if self.snake.detect_collission_with_self() or self.snake.detect_collission_with_wall():
-            self.game_ended = True
-            message = GameOverMessage()
-            self.screen.exitonclick()
-        return None
+            self.scoreboard.reset()
+            self.snake.reset()
         
     # main game loop
     def main_looop(self):

@@ -31,7 +31,7 @@ class HeadSegment(Segment):
     # collission 
 
     def collision_with_wall(self):
-        if self.position[0] > 290 or self.position[0] < -290 or self.position[1] > 290 or self.position[1] < -290 :
+        if self.position[0] > 290 or self.position[0] < -290 or self.position[1] > 290 or self.position[1] < -290:
             return True
         return False
     
@@ -85,3 +85,13 @@ class Snake:
     
     def turn_right(self):
         self.segments[0].turn_right()
+
+    # RESET
+
+    def reset(self):
+        for seg in self.segments:
+            seg.turtle.goto(1000,1000)
+        self.segments.clear()
+        self.head = HeadSegment((0,0))
+        self.segments = [self.head, Segment((-20,0)), Segment((-40,0))]
+        self.previous_tail_position = (-40,0)
