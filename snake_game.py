@@ -45,8 +45,16 @@ class SnakeGame():
     # handle game over conditions
     def handle_game_over(self):
         if self.snake.detect_collission_with_self() or self.snake.detect_collission_with_wall():
+            self.game_ended = True
+            self.screen.onkey(fun=self.reset_game, key="space")
+            self.scoreboard.write_game_over()
+
+    def reset_game(self):
             self.scoreboard.reset()
             self.snake.reset()
+            self.screen.onkey(fun=None, key="space")
+            self.game_ended = False
+            self.main_looop()
         
     # main game loop
     def main_looop(self):

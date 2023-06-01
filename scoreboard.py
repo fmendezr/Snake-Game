@@ -34,3 +34,12 @@ class Scoreboard(Turtle):
     def write_new_high_score(self, new_highscore):
         with open("data.txt", "w") as file:
             file.write(str(new_highscore))
+
+    def write_game_over(self):
+        self.goto(0,0)
+        self.color("red")
+        self.write("Game Over", align="center", font=("Verdana", 69, "normal"))
+        self.color("white")
+        self.goto(0,-30)
+        self.write("Press Space to Continue", align="Center", font=("Verdana", 18, "normal"))
+        self.goto(0,265)
